@@ -1,0 +1,31 @@
+CONFIG
+MPTYPE:2;
+SecurityLevel:1;
+FINALTOL: 1e-16;
+AMPMaxPrec: 2048;
+NBHDRADIUS:1e-5;
+END;
+
+INPUT
+variable_group A1,A2,A3,A4,A5,A6,S1,S2,S3,S4,S5,S6;
+function fA1,fS1,fA2,fS2,fA3,fS3,fA4,fS4,fA5,fS5,fA6,fS6;
+constant DA, DS, rho, mu;
+h = 0.2;
+DA =0.5;
+DS =1;
+rho = 0.055;
+mu = 0.062;
+
+fA1 = -3*A1+4*A2-A3;
+fS1 = -3*S1+4*S2-S3;
+fA2 = (A3+A1-2*A2)*DA/h^2+A2^2*S2-A2*(rho+mu);
+fS2 = (S3+S1-2*S2)*DS/h^2+(A3+A1-2*A2)*DA/h^2-A2*(rho+mu)+(1-S2)*rho;
+fA3 = (A4+A2-2*A3)*DA/h^2+A3^2*S3-A3*(rho+mu);
+fS3 = (S4+S2-2*S3)*DS/h^2+(A4+A2-2*A3)*DA/h^2-A3*(rho+mu)+(1-S3)*rho;
+fA4 = (A5+A3-2*A4)*DA/h^2+A4^2*S4-A4*(rho+mu);
+fS4 = (S5+S3-2*S4)*DS/h^2+(A5+A3-2*A4)*DA/h^2-A4*(rho+mu)+(1-S4)*rho;
+fA5 = (A6+A4-2*A5)*DA/h^2+A5^2*S5-A5*(rho+mu);
+fS5 = (S6+S4-2*S5)*DS/h^2+(A6+A4-2*A5)*DA/h^2-A5*(rho+mu)+(1-S5)*rho;
+fA6 = -3*A6+4*A5-A4;
+fS6 = -3*S6+4*S5-S4;
+END;
